@@ -1,0 +1,197 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  description: API for managing products, categories, and statistics
+  version: 1.0.0
+paths:
+  /api/products:
+    get:
+      summary: Get all products
+      operationId: getAllProducts
+      tags:
+        - Product
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+    post:
+      summary: Create a new product
+      operationId: createProduct
+      tags:
+        - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: The created product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+  /api/products/{id}:
+    get:
+      summary: Get a product by ID
+      operationId: getProductById
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The product with the specified ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+    put:
+      summary: Update an existing product
+      operationId: updateProduct
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: The updated product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+    delete:
+      summary: Delete a product
+      operationId: deleteProduct
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content, product deleted
+  /api/categories:
+    get:
+      summary: Get all categories
+      operationId: getAllCategories
+      tags:
+        - Category
+      responses:
+        '200':
+          description: A list of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryResponse'
+    post:
+      summary: Create a new category
+      operationId: createCategory
+      tags:
+        - Category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+      responses:
+        '200':
+          description: The created category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
+  /api/statistics:
+    get:
+      summary: Get all statistics
+      operationId: getAllStatistics
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: A list of statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticsResponse'
+components:
+  schemas:
+    ProductRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        categoryId:
+          type: integer
+        price:
+          type: number
+        status:
+          type: string
+    ProductResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        categoryId:
+          type: integer
+        price:
+          type: number
+        status:
+          type: string
+    CategoryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    CategoryResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    StatisticsResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+        totalProducts:
+          type: integer
+        totalUpdates:
+          type: integer
+        totalDeletions:
+          type: integer
+        category:
+          type: string
