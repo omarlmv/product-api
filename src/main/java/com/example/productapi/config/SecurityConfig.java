@@ -25,7 +25,7 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated()
-        ).httpBasic(withDefaults());
+        ).formLogin(withDefaults());
         return http.build();
     }
 
