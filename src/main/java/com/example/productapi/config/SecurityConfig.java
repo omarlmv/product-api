@@ -66,7 +66,9 @@ public class SecurityConfig {
                 .build();
         System.out.println("In-memory user: " + user);
         logger.debug("In-memory user: {}", user);
+        System.out.println("Raw password: " + rawPassword);
         logger.debug("Raw password: " + rawPassword);
+        System.out.println("Raw encodedPassword: " + encodedPassword);
         return new InMemoryUserDetailsManager(user);
     }
 
