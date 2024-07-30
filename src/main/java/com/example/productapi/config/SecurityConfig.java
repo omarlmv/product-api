@@ -41,10 +41,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(customLoggingFilter, UsernamePasswordAuthenticationFilter.class)
+        logger.debug("Configuring security filter chain");
+        http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(customLoggingFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(withDefaults());
         return http.build();
     }

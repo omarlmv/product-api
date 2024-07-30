@@ -16,7 +16,7 @@ public class CustomLoggingFilter extends UsernamePasswordAuthenticationFilter {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         logger.debug("Username: " + username);
-        logger.debug("Password: " + password);
+        logger.debug("Password: " + password); // For demonstration purposes only
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         return this.getAuthenticationManager().authenticate(authRequest);
     }
