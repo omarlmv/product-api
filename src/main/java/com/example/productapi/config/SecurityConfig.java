@@ -24,7 +24,7 @@ public class SecurityConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-    /*@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         logger.debug("Configuring security filter chain");
         http.authorizeHttpRequests(authorize -> {
@@ -34,9 +34,9 @@ public class SecurityConfig {
         }).httpBasic(withDefaults());
         logger.debug("Returning configured SecurityFilterChain");
         return http.build();
-    }*/
+    }
 
-    @Autowired
+    /*@Autowired
     private CustomLoggingFilter customLoggingFilter;
 
     @Bean
@@ -47,10 +47,10 @@ public class SecurityConfig {
                         .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(customLoggingFilter, UsernamePasswordAuthenticationFilter.class)
+                //.addFilterBefore(customLoggingFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(withDefaults());
         return http.build();
-    }
+    }*/
 
     @Bean
     public UserDetailsService userDetailsService() {
