@@ -31,7 +31,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("user")
-                .password("$2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36XqAwY8b1C9N/lDg98vc.2") // "password" encoded with BCrypt
+                .password(passwordEncoder().encode("password"))
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
