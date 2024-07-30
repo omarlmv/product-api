@@ -24,31 +24,36 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("Configuring security filter chain");
         logger.debug("Configuring security filter chain");
         http.authorizeHttpRequests(authorize -> {
-                    logger.debug("Configuring authorization for /public/**");
-                    authorize.requestMatchers("/public/**").permitAll()
-                            .anyRequest().authenticated();
-                }
-        ).httpBasic(withDefaults());
+            System.out.println("Configuring authorization for /public/**");
+            logger.debug("Configuring authorization for /public/**");
+            authorize.requestMatchers("/public/**").permitAll()
+                    .anyRequest().authenticated();
+        }).httpBasic(withDefaults());
+        System.out.println("Returning configured SecurityFilterChain");
         logger.debug("Returning configured SecurityFilterChain");
         return http.build();
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
+        System.out.println("Configuring in-memory user details service");
         logger.debug("Configuring in-memory user details service");
         UserDetails user = User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("password"))
                 .roles("USER")
                 .build();
+        System.out.println("In-memory user: " + user);
         logger.debug("In-memory user: {}", user);
         return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+        System.out.println("Configuring password encoder");
         logger.debug("Configuring password encoder");
         return new BCryptPasswordEncoder();
     }
