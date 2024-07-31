@@ -4,7 +4,6 @@ package com.example.productapi.service.impl;
 import com.example.productapi.dto.ErrorResponse;
 import com.example.productapi.entity.Product;
 import com.example.productapi.enums.ProductStatus;
-import com.example.productapi.exception.ProductNotFoundException;
 import com.example.productapi.mapper.ProductMapper;
 import com.example.productapi.model.ProductRequest;
 import com.example.productapi.model.ProductResponse;
@@ -120,6 +119,18 @@ public class ProductServiceImpl implements ProductService {
                                 .error("Product Not Found")
                                 .message("Product with ID " + id + " not found")
                                 .build())))
+                .map(productMapper::toResponse);
+    }
+
+    @Override
+    public Flux<ProductResponse> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name)
+                .switchIfEmpty(Mono.error(
+                        ErrorResponse.builder()
+                                .status(404)
+                                .error("Product Not Found")
+                                .message("No products found with name: " + name)
+                                .build()))
                 .map(productMapper::toResponse);
     }
 }

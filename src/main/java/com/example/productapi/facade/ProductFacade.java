@@ -38,4 +38,8 @@ public class ProductFacade {
     public Mono<ProductResponse> getProductById(Integer id) {
         return productService.getProductById(id);
     }
+
+    public Flux<ProductResponse> searchProductsByName(String name) {
+        return productService.searchProductsByName(name);
+    }
 }

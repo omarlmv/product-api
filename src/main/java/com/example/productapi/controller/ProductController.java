@@ -66,4 +66,9 @@ public class ProductController implements ProductApi {
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());
     }
+
+    @Override
+    public Mono<ResponseEntity<Flux<ProductResponse>>> searchProductsByName(String name, ServerWebExchange exchange) {
+        return Mono.just(ResponseEntity.ok(productFacade.searchProductsByName(name)));
+    }
 }

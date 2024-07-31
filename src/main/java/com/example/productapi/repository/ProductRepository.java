@@ -12,4 +12,5 @@ public interface ProductRepository extends ReactiveCrudRepository<Product, Integ
     Flux<Product> findByNameContaining(String name);
     Flux<Product> findAllByStatusNot(String status);
     Mono<Product> findByIdAndStatus(Integer id, String status);
+    Flux<Product> findByNameContainingIgnoreCase(String name);
 }

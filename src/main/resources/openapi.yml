@@ -154,6 +154,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/StatisticsResponse'
+  /api/products/search:
+    get:
+      summary: Search products by name
+      operationId: searchProductsByName
+      tags:
+        - Product
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of products matching the search criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     ProductRequest:
