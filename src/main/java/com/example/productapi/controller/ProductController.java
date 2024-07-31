@@ -2,6 +2,8 @@
 package com.example.productapi.controller;
 
 import com.example.productapi.api.ProductApi;
+//import com.example.productapi.dto.ErrorResponse;
+import com.example.productapi.exception.CategoryNotFoundException;
 import com.example.productapi.facade.ProductFacade;
 import com.example.productapi.model.ProductRequest;
 import com.example.productapi.model.ProductResponse;
@@ -31,8 +33,7 @@ public class ProductController implements ProductApi {
     ServerWebExchange exchange) {
         return productRequest
                 .flatMap(productFacade::createProduct)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.badRequest().build()));
+                .map(ResponseEntity::ok);
     }
 
     @Override

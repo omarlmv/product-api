@@ -34,15 +34,22 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>5.3.20</version> <!-- Verifica y ajusta la versión según sea necesario -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!-- Spring Boot WebFlux Starter -->
+        <!-- Spring Boot WebFlux Starter
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- Spring Boot Data R2DBC Starter -->
         <dependency>
@@ -56,13 +63,13 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Spring Boot Starter Security -->
+        <!-- Spring Boot Starter Security
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency> -->
 
-        <!-- Reactor Netty for WebFlux -->
+        <!-- Reactor Netty for WebFlux-->
         <dependency>
             <groupId>io.projectreactor.netty</groupId>
             <artifactId>reactor-netty</artifactId>
@@ -117,6 +124,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Reactor Test for WebFlux -->
@@ -126,12 +139,20 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jakarta Servlet API -->
+        <!-- Jakarta Servlet API
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>compile</scope>
+        </dependency>-->
+
+        <!-- Spring Boot Starter Tomcat for Local Development
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>javax.validation</groupId>
@@ -149,6 +170,12 @@
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
             <version>0.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
 
     </dependencies>
@@ -190,7 +217,11 @@
                                 <apiPackage>com.example.productapi.api</apiPackage>
                                 <modelPackage>com.example.productapi.model</modelPackage>
                                 <useTags>true</useTags>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <additionalModelTypeAnnotations>@lombok.Data @lombok.AllArgsConstructor @lombok.NoArgsConstructor @lombok.Builder</additionalModelTypeAnnotations>
                             </configOptions>
+                            <templateDirectory>${project.basedir}/src/main/resources/templates</templateDirectory>
+                            <!-- <modelsToGenerate>ErrorResponse</modelsToGenerate> -->
                         </configuration>
                     </execution>
                 </executions>

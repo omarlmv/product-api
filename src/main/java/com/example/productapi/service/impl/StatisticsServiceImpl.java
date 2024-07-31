@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
 
@@ -24,7 +26,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public Mono<Void> createStatistics(String date, int totalProducts, int totalUpdates, int totalDeletions, String category) {
+    public Mono<Void> createStatistics(LocalDateTime date, int totalProducts, int totalUpdates, int totalDeletions, String category) {
         Statistics statistics = new Statistics();
         statistics.setDate(date);
         statistics.setTotalProducts(totalProducts);
