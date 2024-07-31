@@ -6,13 +6,15 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Table("statistics")
 public class Statistics {
     @Id
     private Integer id;
-    private String date;
+    private LocalDateTime date;
     private int totalProducts;
     private int totalUpdates;
     private int totalDeletions;

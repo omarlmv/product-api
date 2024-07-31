@@ -1,5 +1,5 @@
 package com.example.productapi.config;
-
+/*
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
-@Component
-public class JwtRequestFilter extends OncePerRequestFilter {
-
+*/
+//@Component
+public class JwtRequestFilter {//extends OncePerRequestFilter
+/*
     private static final Logger logger = LoggerFactory.getLogger(JwtRequestFilter.class);
 
     @Autowired
@@ -59,5 +59,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
-    }
+    }*/
 }

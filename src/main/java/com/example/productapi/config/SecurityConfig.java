@@ -1,6 +1,6 @@
 package com.example.productapi.config;
 
-
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig {
+*/
+//@Configuration
+//@EnableWebSecurity
+public class SecurityConfig {/*
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     private final JwtRequestFilter jwtRequestFilter;
@@ -31,7 +31,7 @@ public class SecurityConfig {
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
-    @Bean
+    //@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         logger.debug("Configuring SecurityFilterChain");
 
@@ -45,14 +45,15 @@ public class SecurityConfig {
                 .sessionManagement(session -> {
                     logger.debug("Setting session management to STATELESS");
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                });
+                })
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable);
 
         logger.debug("Adding JwtRequestFilter before UsernamePasswordAuthenticationFilter");
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-    @Bean
+    //@Bean
     public UserDetailsService userDetailsService() {
         logger.debug("Creating in-memory user details service with default user");
         UserDetails user = User.withUsername("user")
@@ -62,13 +63,13 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
-    @Bean
+    //@Bean
     public PasswordEncoder passwordEncoder() {
         logger.debug("Creating BCryptPasswordEncoder bean");
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    //@Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         logger.debug("Configuring AuthenticationManager");
         AuthenticationManagerBuilder authenticationManagerBuilder =
@@ -76,5 +77,5 @@ public class SecurityConfig {
         authenticationManagerBuilder.userDetailsService(userDetailsService())
                 .passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
-    }
+    }*/
 }

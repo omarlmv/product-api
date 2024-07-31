@@ -10,8 +10,6 @@ paths:
       operationId: getAllProducts
       tags:
         - Product
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: A list of products
@@ -26,8 +24,6 @@ paths:
       operationId: createProduct
       tags:
         - Product
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -41,14 +37,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductResponse'
+        '404':
+          description: Category Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/products/{id}:
     get:
       summary: Get a product by ID
       operationId: getProductById
       tags:
         - Product
-      security:
-        - BearerAuth: []
       parameters:
         - name: id
           in: path
@@ -67,8 +73,6 @@ paths:
       operationId: updateProduct
       tags:
         - Product
-      security:
-        - BearerAuth: []
       parameters:
         - name: id
           in: path
@@ -93,8 +97,6 @@ paths:
       operationId: deleteProduct
       tags:
         - Product
-      security:
-        - BearerAuth: []
       parameters:
         - name: id
           in: path
@@ -110,8 +112,6 @@ paths:
       operationId: getAllCategories
       tags:
         - Category
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: A list of categories
@@ -126,8 +126,6 @@ paths:
       operationId: createCategory
       tags:
         - Category
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -147,8 +145,6 @@ paths:
       operationId: getAllStatistics
       tags:
         - Statistics
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: A list of statistics
@@ -159,11 +155,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/StatisticsResponse'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
     ProductRequest:
       type: object
@@ -215,4 +206,13 @@ components:
         totalDeletions:
           type: integer
         category:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
           type: string

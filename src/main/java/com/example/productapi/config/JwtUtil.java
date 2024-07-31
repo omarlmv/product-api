@@ -1,5 +1,5 @@
 package com.example.productapi.config;
-
+/*
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,12 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.function.Function;
+import java.util.function.Function;*/
 
-@Component
+//@Component
 public class JwtUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
+    /*private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     private String secretKey = "secret";
 
     public String extractUsername(String token) {
@@ -72,5 +72,5 @@ public class JwtUtil {
             return header.substring(7);
         }
         return null;
-    }
+    }*/
 }
